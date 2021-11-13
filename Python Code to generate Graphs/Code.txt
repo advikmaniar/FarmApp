@@ -1,0 +1,87 @@
+def generate_graphs():
+        LY_project=firebase.FirebaseApplication("https://ly-project-b1f1c-default-rtdb.firebaseio.com/",None)
+
+        #Initialise list to store values
+        temp=[]
+        mois=[]
+        hum=[]
+        DT=[]
+
+        def fetch_values():
+            result=LY_project.get("Values","")
+            #time=pd.to_datetime((result["LastIrrD"] +" "+ result["LastIrrT"]),infer_datetime_format=True)
+            now=dt.datetime.now().strftime("%H:%M:%S")
+            temp.append(result["Temperature"])
+            mois.append(result["Moisture"])
+            hum.append(result["Humidity"])
+            #DT.append(time)
+            DT.append(now)
+            print(len(DT))
+            print(result)
+            #print(time)
+
+        print ("Fetching Values...")
+        n=5   #Number of readings
+        interval=10   #Interval between readings
+        safety=n     # Safely space added to avoid overwriting of values
+        rt = RepeatedTimer(interval, fetch_values) # it auto-starts, no need of rt.start()
+        try:
+            sleep(n*interval+safety) # your long-running job goes here...
+        finally:
+            rt.stop() # try/finally block to make sure the program ends!
+
+        #----------------------------------------------------------------Store the fetched values-----------------------------------------------------------------------#   
+    def store_v
+        new_DT=DT
+        new_temp=temp
+        new_mois=mois
+        new_hum=hum
+
+        #Save data to csv file
+        fields = ['Date-Time', 'Soil Moisture', 'Temperature', 'Humidity'] 
+        rows = [new_DT, new_mois, new_temp,new_hum]
+        dict = {'Date-Time': new_DT, 'Soil Moisture': new_mois, 'Temperature': new_temp, "Humidity": new_hum} 
+        df = pd.DataFrame(dict)
+        display(df)
+        #df.to_csv("readings4.csv")
+
+        #--------------------------------------------------------------Visualize the fetched values---------------------------------------------------------------------#
+
+        #1-Soil Moisture
+        plt.figure(figsize=(15,5))
+        plt.title("Soil Moisture")
+        plt.scatter(new_DT,new_mois,lw=5,color="blue")
+        plt.plot(new_DT,new_mois,color="blue",lw=2,label="Soil Moisture")
+        plt.xlabel("Time")
+        plt.ylabel("Moisture content in w/s")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.legend()
+        #plt.savefig("Soil Moisture")
+        plt.show()
+
+        #2-Temperature
+        plt.figure(figsize=(15,5))
+        plt.title("Temperature")
+        plt.scatter(new_DT,new_temp,lw=5,color="red")
+        plt.plot(new_DT,new_temp,color="red",lw=2,label="Temperature")
+        plt.xlabel("Time")
+        plt.ylabel("Temperature in °C")
+        plt.xticks(rotation=45)
+        plt.legend()
+        plt.tight_layout()
+        #plt.savefig("Temperature")
+        plt.show()
+
+        #3-Humidity
+        plt.figure(figsize=(15,5))
+        plt.title("Humidity")
+        plt.scatter(new_DT,new_hum,lw=5,color="yellow")
+        plt.plot(new_DT,new_hum,color="yellow",lw=2,label="Humidity")
+        plt.xlabel("Time")
+        plt.ylabel("Humidity in %")
+        plt.xticks(rotation=45)
+        plt.legend()
+        plt.tight_layout()
+        #plt.savefig("Humidity")
+        plt.show()
