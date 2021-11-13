@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "982639207207",
+    "firebase_url": "https://ly-project-b1f1c-default-rtdb.firebaseio.com/",
+    "project_id": "ly-project-b1f1c",
+    "storage_bucket": "ly-project-b1f1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982639207207:android:1ec56fea8a236d7e143f02",
+        "android_client_info": {
+          "package_name": "com.ly_project.irrigationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982639207207-8aj2nscrgbsv96fna10mcbs5hpoe9u43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6T9hU_tAjPJC_Wa0FCADWyLA5HwGUeuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982639207207-8aj2nscrgbsv96fna10mcbs5hpoe9u43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
