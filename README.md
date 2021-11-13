@@ -1,4 +1,4 @@
-# irrigationapp
+# Irrigationapp
 
 Automatic Irrigation App
 
